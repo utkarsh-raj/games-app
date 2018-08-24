@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Games App</title>
+        <link 
+        rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+        crossorigin="anonymous">
+        <link 
+        rel="stylesheet"
+        href="/stylesheets/auto-complete.css">
+        <link 
+        rel="stylesheet"
+        href="/stylesheets/index.css">
+        <link 
+        rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Acme|Hammersmith+One|Righteous|Titan+One|Carme" rel="stylesheet">
+    </head>
+    <body>
+        
+        <div class="jumbotron" id="header">
+            <div class="container">
+                <h1><a href="/games/0"><i class="fas fa-gamepad"></i></a> Arcade Zone</h1>
+                <p id="smallHeader">The Definitive Collection of your Favourites and the Classics!</p>
+                <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
+            </div>
+        </div>
+        
+        <div class="container" id="search">
+            <form action="/games/search" method="POST">
+            <div class="input-group">
+                <input id="inputsearch" type="text" name="game" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default form-control" type="submit"><i class="fas fa-compass"></i>Find Me!</button>
+                </span>
+                </form>
+            </div><!-- /input-group -->
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort By
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <li><a href="/games/sort/descending/0">Score (Best to Worst)</a></li>
+                <li><a href="/games/sort/ascending/0">Score (Worst to Best)</a></li>
+                <!--<li><a href="#">Something else here</a></li>-->
+                <li role="separator" class="divider"></li>
+                <% var i = 0; %>
+                <% var platformList = ['PlayStation Vita',
+                          'iPad',
+                          'Xbox 360',
+                          'PlayStation 3',
+                          'Macintosh',
+                          'PC',
+                          'iPhone',
+                          'Nintendo DS',
+                          'Nintendo 3DS',
+                          'Android',
+                          'Wii',
+                          'PlayStation 4',
+                          'Wii U',
+                          'Linux',
+                          'PlayStation Portable',
+                          'PlayStation',
+                          'Nintendo 64',
+                          'Saturn',
+                          'Lynx',
+                          'Game Boy',
+                          'Game Boy Color',
+                          'NeoGeo Pocket Color',
+                          'Game.Com',
+                          'Dreamcast',
+                          'Dreamcast VMU',
+                          'WonderSwan',
+                          'Arcade',
+                          'Nintendo 64DD']; %>
+                <% for (i = 0; i < platformList.length; i++) { %>
+                    <li><a href="/games/sort/platform/<%= platformList[i] %>/0"><%= platformList[i] %></a></li>
+                <% } %>
+              </ul>
+            </div>
+        </div>

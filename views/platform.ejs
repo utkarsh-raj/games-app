@@ -1,0 +1,79 @@
+<% include partials/header %>
+
+<% var gameList = ["onezone", "twozone", "threezone", "fourzone", "fivezone", "sixzone"]; %>
+<% var imageList = ["imageone", "imagetwo", "imagethree", "imagefour", "imagefive", "imagesix"]; %>
+
+<div class="container">
+    <div class="row equal-height">
+        <% var j = 0; %>
+        <% for (j = 0; j < 6; j++) { %>
+            <% if (6 * page + j < data.length) { %>
+                <div class="col-md-4 col-sm-6 col-xs-12 gamemainarea">
+                    <div class="overlay" id="<%= gameList[j] %>">
+                        <div class="gamedetails">
+                            Genre: <strong><%= data[6 * page + j]["genre"] %></strong>
+                            <br>
+                            Platform: <strong><%= data[6 * page + j]["platform"] %></strong>
+                            <br>
+                            Release Year: <strong><%= data[6 * page + j]["release_year"] %></strong>
+                            <br>
+                            Arcade Zone Score: <strong><%= data[6 * page + j]["score"] %></strong>
+                        </div>
+                    </div>
+                    <div id="title">
+                        <div id="editorschoice">
+                            <% if (data[6 * page + j]["editors_choice"] === "Y") { %>
+                                <i class="fas fa-fire"></i> Editor's Choice
+                            <% } %>
+                        </div>
+                        <div class="thumbnail image">
+                            <img src="/images/<%= imageList[j] %>.jpg" alt="Games">
+                        </div>
+                        <div id="name">
+                            <h3><%= data[6 * page + j]["title"] %></h3>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+</div>
+
+<nav aria-label="...">
+  <ul class="pager container">
+    <% if (page !== 0) { %>
+    <li id="leftPage"><a href="/games/sort/platform/<%= platform %>/<%= Math.max(0, page - 1) %>"><i class="fas fa-hand-point-left"></i> Go Back</a></li>
+    <% } %>
+    <% if (page !== data.length / 6) { %>
+    <li id="rightPage"><a href="/games/sort/platform/<%= platform %>/<%= Math.min(data.length, page + 1) %>">Show More <i class="fas fa-hand-point-right"></i></a></li>
+    <% } %>
+  </ul>
+</nav>
+
+
+
+
+
+
+
+
+
+
+<script
+                src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous">
+        </script>
+        <script 
+                src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+                crossorigin="anonymous">
+        </script>
+        <script
+            src="/scripts/auto-complete.min.js">
+        </script>
+        <script 
+                src="/scripts/index.js">
+        </script>
+    </body>
+</html>

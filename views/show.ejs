@@ -1,0 +1,67 @@
+<% include partials/header %>
+
+<% var gameList = ["onezone", "twozone", "threezone", "fourzone", "fivezone", "sixzone"]; %>
+<% var imageList = ["imageone", "imagetwo", "imagethree", "imagefour", "imagefive", "imagesix"]; %>
+
+<div class="container">
+    <div class="row equal-height">
+        <% var i = 0, j = 0, flag1 = 0; %>
+        <% for (i = 0; i < 2499; i++) { %>
+            <% var game = String(data[i]["title"]); %>
+            <% if (game.toLowerCase() === String(name).toLowerCase()) { %>
+                <% flag1 = 1; %>
+                <div class="col-md-4 col-sm-6 col-xs-12 gamemainarea">
+                    <div class="overlay" id="<%= gameList[j % 6] %>">
+                        <div class="gamedetails">
+                            Genre: <strong><%= data[i]["genre"] %></strong>
+                            <br>
+                            Platform: <strong><%= data[i]["platform"] %></strong>
+                            <br>
+                            Release Year: <strong><%= data[i]["release_year"] %></strong>
+                            <br>
+                            Arcade Zone Score: <strong><%= data[i]["score"] %></strong>
+                        </div>
+                    </div>
+                    <div id="title">
+                        <div id="editorschoice">
+                            <% if (data[i]["editors_choice"] === "Y") { %>
+                                <i class="fas fa-fire"></i> Editor's Choice
+                            <% } %>
+                        </div>
+                        <div class="thumbnail image">
+                            <img src="/images/<%= imageList[j % 6] %>.jpg" alt="Games">
+                        </div>
+                        <div id="name">
+                            <h3><%= data[i]["title"] %></h3>
+                        </div>
+                    </div>
+                </div>
+                <% j = j + 1; %>
+            <% } %>
+        <% } %>
+        <% if (flag1 === 0) { %>
+            <div class="container">
+                <h1 id="errormessage">Sorry, The Game seems not from this planet, for it would have been in our registers then. We are Sorry!</h1>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<script
+                src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous">
+        </script>
+        <script 
+                src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+                crossorigin="anonymous">
+        </script>
+        <script
+            src="/scripts/auto-complete.min.js">
+        </script>
+        <script 
+                src="/scripts/index.js">
+        </script>
+    </body>
+</html>
